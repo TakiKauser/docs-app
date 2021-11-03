@@ -5,22 +5,23 @@ import {
   Route
 } from "react-router-dom";
 import HomePage from './components/Pages/HomePage';
+import AppointmentPage from './components/Pages/AppointmentPage';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <HomePage />
           </Route>
           <Route path="/home">
             <HomePage />
           </Route>
-          {/* <Route path="/about">
-            <About />
+          <Route path="/appointment">
+            <AppointmentPage />
           </Route>
-          <Route path="/users">
+          {/* <Route path="/users">
             <Users />
           </Route> */}
         </Switch>

@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuBar from '../../Shared/MenuBar/MenuBar';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
-import Banner from '../Bannet/Banner';
+import Banner from '../Banner/Banner';
 import Services from '../Services/Services';
 
 const Home = () => {
