@@ -51,6 +51,7 @@ const AvailableAppointments = ({ date }) => {
                     bookings?.map(booking => <Bookings
                         key={booking.id}
                         booking={booking}
+                        date={date}
                     />)
                 }
             </Grid>
