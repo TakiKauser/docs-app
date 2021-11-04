@@ -3,6 +3,7 @@ import MenuBar from '../../Shared/MenuBar/MenuBar';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
 import Care from '../Care/Care';
+import Info from '../Info/Info';
 import Services from '../Services/Services';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
         <div>
             <MenuBar />
             <Banner />
+            <Info />
             <Services />
             <Care />
             <AppointmentBanner />
