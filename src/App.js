@@ -7,6 +7,7 @@ import {
 import HomePage from './components/Pages/HomePage';
 import AppointmentPage from './components/Pages/AppointmentPage';
 import Login from './components/UserAuth/Login/Login';
+import Register from './components/UserAuth/Register/Register';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
           </Route>
         </Switch>
       </Router>

@@ -2,8 +2,7 @@ import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import login from '../../../images/login.png';
-
-const Login = () => {
+const Register = () => {
     const [loginData, setLoginData] = useState({});
 
     const handleOnChange = e => {
@@ -13,9 +12,14 @@ const Login = () => {
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
+        console.log(loginData);
     }
 
     const handleSignInSubmit = e => {
+        if (loginData.password !== loginData.confirmPassword) {
+            alert("Password didn't mathed!");
+            return;
+        }
         alert("Signing In...");
         e.preventDefault();
     }
@@ -24,7 +28,7 @@ const Login = () => {
             <Grid container spacing={3}>
                 <Grid item sx={{ my: 10 }} xs={12} md={6}>
                     <Typography variant="h4" gutterBottom component="div" sx={{ fontWeight: '600', color: '#39EAD6' }}>
-                        SIGN IN
+                        SIGN UP
                     </Typography>
                     <form onSubmit={handleSignInSubmit}>
                         <TextField
@@ -45,13 +49,24 @@ const Login = () => {
                             variant="standard"
                             type="password"
                         />
-                        <Button type="submit" variant='contained' sx={{ width: '75%', m: 3, py: 2 }} style={{ backgroundColor: '#39EAD6' }}>Sign in</Button>
+                        <TextField
+                            sx={{ width: '75%', m: 3 }}
+                            id="user-email"
+                            label="Re-Type Password"
+                            name="confirmPassword"
+                            onChange={handleOnChange}
+                            variant="standard"
+                            type="password"
+                        />
+                        <Button type="submit" variant='contained' sx={{ width: '75%', m: 3, py: 2 }} style={{ backgroundColor: '#39EAD6' }}>
+                            SIGN UP
+                        </Button>
                         <NavLink
-                            to="/register"
+                            to="/login"
                             style={{ textDecoration: 'none', color: '#39EAD6' }}
                         >
                             <Button>
-                                New User? Please REGISTER
+                                Already Resistered? Please SIGN IN
                             </Button>
                         </NavLink>
                     </form>
@@ -64,4 +79,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;
