@@ -2,6 +2,7 @@ import React from 'react';
 import MenuBar from '../../Shared/MenuBar/MenuBar';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
+import Care from '../Care/Care';
 import Services from '../Services/Services';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
             <MenuBar />
             <Banner />
             <Services />
+            <Care />
             <AppointmentBanner />
         </div>
     );
