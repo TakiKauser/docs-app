@@ -1,11 +1,11 @@
 import { Button, Grid, Typography } from '@mui/material';
-import React from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import BookingModal from '../BookingModal/BookingModal';
 
 const Bookings = ({ booking, date }) => {
     const { name, time, space } = booking;
-    const [openBooking, setOpenBooking] = React.useState(false);
+    const [openBooking, setOpenBooking] = useState(false);
     const handleBookingOpen = () => setOpenBooking(true);
     const handleBookingClose = () => setOpenBooking(false);
     return (

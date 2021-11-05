@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -24,10 +24,28 @@ const BookingModal = ({ booking, openBooking, handleBookingClose, date }) => {
     const { name, time } = booking;
     const { user } = useAuth();
 
-    const handleBookingSubmit = e => {
-        alert("Booking Confirmed");
-        // collect data
+    const initialBookingInfo = { patientName: user?.displayName, email: user?.email, phone: '' }
 
+    const [bookingInfo, setBookingInfo] = useState(initialBookingInfo);
+
+    const handleOnBlur = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newInfo = { ...bookingInfo }
+        newInfo[field] = value;
+        console.log(newInfo);
+        setBookingInfo(newInfo);
+    }
+
+    const handleBookingSubmit = e => {
+        // collect data
+        const appointment = {
+            ...bookingInfo,
+            time,
+            serviceName: name,
+            date: date.toLocaleDateString()
+        }
+        console.log(appointment);
         // send to server
 
         handleBookingClose();
@@ -60,17 +78,23 @@ const BookingModal = ({ booking, openBooking, handleBookingClose, date }) => {
                         <TextField
                             sx={{ width: '95%', m: 2 }}
                             defaultValue={user?.displayName}
+                            name="patientName"
+                            onBlur={handleOnBlur}
                             label="Name"
                             size="small"
                         />
                         <TextField
                             sx={{ width: '95%', m: 2 }}
                             defaultValue={user?.email}
+                            name="email"
+                            onBlur={handleOnBlur}
                             label="Email"
                             size="small"
                         />
                         <TextField
                             sx={{ width: '95%', m: 2 }}
+                            name="phone"
+                            onBlur={handleOnBlur}
                             label="Contact Number"
                             size="small"
                         />
