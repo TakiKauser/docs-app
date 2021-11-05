@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../images/login.png';
+import GoogleIcon from '@mui/icons-material/Google';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({});
-    const { user, loginUser, isLoading, authError } = useAuth();
+    const { user, loginUser, isLoading, authError, signInWithGoogle } = useAuth();
 
     const location = useLocation();
     const history = useHistory();
@@ -14,7 +15,7 @@ const Login = () => {
     const handleOnChange = e => {
         const field = e.target.name;
         const value = e.target.value;
-        
+
         const newLoginData = { ...loginData };
         newLoginData[field] = value;
         setLoginData(newLoginData);
@@ -24,6 +25,11 @@ const Login = () => {
         loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
     }
+
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history);
+    }
+
     return (
         <Container>
             <Grid container spacing={3}>
@@ -76,6 +82,7 @@ const Login = () => {
                             {authError}
                         </Alert>
                     }
+                    <Button onClick={handleGoogleSignIn} variant="outlined" style={{ backgroundColor: '#39EAD6', color: 'white' }}><GoogleIcon /></Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <img style={{ width: '100%' }} src={login} alt="login" />
