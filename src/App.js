@@ -8,29 +8,33 @@ import HomePage from './components/Pages/HomePage';
 import AppointmentPage from './components/Pages/AppointmentPage';
 import Login from './components/UserAuth/Login/Login';
 import Register from './components/UserAuth/Register/Register';
+import AuthProvider from './components/context/AuthProvider/AuthProvider';
+import PrivateRoute from './components/UserAuth/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <HomePage />
-          </Route>
-          <Route path="/home">
-            <HomePage />
-          </Route>
-          <Route path="/appointment">
-            <AppointmentPage />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-        </Switch>
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/home">
+              <HomePage />
+            </Route>
+            <PrivateRoute path="/appointment">
+              <AppointmentPage />
+            </PrivateRoute>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
