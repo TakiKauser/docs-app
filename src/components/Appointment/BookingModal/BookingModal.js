@@ -20,7 +20,7 @@ const style = {
     p: 4,
 };
 
-const BookingModal = ({ booking, openBooking, handleBookingClose, date }) => {
+const BookingModal = ({ booking, openBooking, handleBookingClose, date, setBookingSuccess }) => {
     const { name, time } = booking;
     const { user } = useAuth();
 
@@ -45,10 +45,24 @@ const BookingModal = ({ booking, openBooking, handleBookingClose, date }) => {
             serviceName: name,
             date: date.toLocaleDateString()
         }
-        console.log(appointment);
-        // send to server
+        // console.log(appointment);
 
-        handleBookingClose();
+        // send to server
+        fetch('http://localhost:5000/appointments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(appointment)
+        })
+            .then(response => response.json())
+            .then(jsonData => {
+                if (jsonData.insertedId) {
+                    setBookingSuccess(true);
+                    handleBookingClose();
+                }
+            })
+
         e.preventDefault();
     }
     return (

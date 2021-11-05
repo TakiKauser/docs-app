@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import BookingModal from '../BookingModal/BookingModal';
 
-const Bookings = ({ booking, date }) => {
+const Bookings = ({ booking, date, setBookingSuccess }) => {
     const { name, time, space } = booking;
     const [openBooking, setOpenBooking] = useState(false);
     const handleBookingOpen = () => setOpenBooking(true);
@@ -29,6 +29,7 @@ const Bookings = ({ booking, date }) => {
                 handleBookingClose={handleBookingClose}
                 openBooking={openBooking}
                 date={date}
+                setBookingSuccess={setBookingSuccess}
             ></BookingModal>
 
         </>
