@@ -25,12 +25,15 @@ import {
 import { Button } from '@mui/material';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctor from '../AddDoctor/AddDoctor';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 180;
 
 function DashBoard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+
+    const { admin } = useAuth();
 
     let { path, url } = useRouteMatch();
 
@@ -44,8 +47,13 @@ function DashBoard(props) {
             <Divider />
             <Link to="/appointment" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Appointment</Button></Link>
             <Link to={`${url}`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">DashBoard</Button></Link>
-            <Link to={`${url}/makeAdmin`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Make Admin</Button></Link>
-            <Link to={`${url}/addDoctor`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Add Doctor</Button></Link>
+            {
+                admin &&
+                <Box>
+                    <Link to={`${url}/makeAdmin`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Make Admin</Button></Link>
+                    <Link to={`${url}/addDoctor`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Add Doctor</Button></Link>
+                </Box>
+            }
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
