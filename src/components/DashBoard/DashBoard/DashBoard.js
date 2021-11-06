@@ -15,16 +15,24 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Grid } from '@mui/material';
-import Calendar from '../../Shared/Calendar/Calendar';
-import Appointments from '../Appointments/Appointments';
+import DashBoardHome from '../DashBoardHome/DashBoardHome';
+import {
+    Switch,
+    Route,
+    Link,
+    useRouteMatch
+} from "react-router-dom";
+import { Button } from '@mui/material';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddDoctor from '../AddDoctor/AddDoctor';
 
 const drawerWidth = 180;
 
 function DashBoard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
+
+    let { path, url } = useRouteMatch();
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
@@ -34,6 +42,10 @@ function DashBoard(props) {
         <div>
             <Toolbar />
             <Divider />
+            <Link to="/appointment" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Appointment</Button></Link>
+            <Link to={`${url}`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">DashBoard</Button></Link>
+            <Link to={`${url}/makeAdmin`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Make Admin</Button></Link>
+            <Link to={`${url}/addDoctor`} style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Add Doctor</Button></Link>
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
@@ -111,21 +123,17 @@ function DashBoard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={4}>
-                            <Calendar
-                                date={date}
-                                setDate={setDate}
-                            />
-                        </Grid>
-                        <Grid item xs={12} md={8}>
-                            <Appointments
-                                date={date}
-                            />
-                        </Grid>
-                    </Grid>
-                </Typography>
+                <Switch>
+                    <Route exact path={path}>
+                        <DashBoardHome />
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin />
+                    </Route>
+                    <Route path={`${path}/addDoctor`}>
+                        <AddDoctor />
+                    </Route>
+                </Switch>
             </Box>
         </Box>
     );
