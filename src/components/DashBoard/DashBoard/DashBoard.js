@@ -26,6 +26,7 @@ import { Button } from '@mui/material';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctor from '../AddDoctor/AddDoctor';
 import useAuth from '../../../hooks/useAuth';
+import AdminRoute from '../../UserAuth/AdminRoute/AdminRoute';
 
 const drawerWidth = 180;
 
@@ -135,12 +136,12 @@ function DashBoard(props) {
                     <Route exact path={path}>
                         <DashBoardHome />
                     </Route>
-                    <Route path={`${path}/makeAdmin`}>
+                    <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
-                    </Route>
-                    <Route path={`${path}/addDoctor`}>
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/addDoctor`}>
                         <AddDoctor />
-                    </Route>
+                    </AdminRoute>
                 </Switch>
             </Box>
         </Box>
