@@ -10,6 +10,7 @@ import Login from './components/UserAuth/Login/Login';
 import Register from './components/UserAuth/Register/Register';
 import AuthProvider from './components/context/AuthProvider/AuthProvider';
 import PrivateRoute from './components/UserAuth/PrivateRoute/PrivateRoute';
+import DashBoardPage from './components/Pages/DashBoardPage';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
             </Route>
             <PrivateRoute path="/appointment">
               <AppointmentPage />
+            </PrivateRoute>
+            <PrivateRoute path="/dashboard">
+              <DashBoardPage />
             </PrivateRoute>
             <Route path="/login">
               <Login />

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const MenuBar = () => {
@@ -27,10 +27,15 @@ const MenuBar = () => {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Docs App
                     </Typography>
-                    <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
+                    <NavLink to="/" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">HOME</Button></NavLink>
+                    <NavLink to="/appointment" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Appointment</Button></NavLink>
                     {
                         user?.email ?
-                            <Button onClick={logOut} color="inherit">Sign Out</Button>
+
+                            <Box>
+                                <NavLink to="/dashboard" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">DashBoard</Button></NavLink>
+                                <Button onClick={logOut} color="inherit">Sign Out</Button>
+                            </Box>
                             :
                             <NavLink to="/login" style={{ textDecoration: "none", color: "inherit" }}><Button color="inherit">Login</Button></NavLink>
                     }
