@@ -8,7 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { IconButton, Tooltip } from '@mui/material';
+import { Button, IconButton, Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Appointments = ({ date }) => {
     const { user } = useAuth();
@@ -34,6 +35,7 @@ const Appointments = ({ date }) => {
                             <TableCell align="left">Email</TableCell>
                             <TableCell align="left">Time</TableCell>
                             <TableCell align="right">Action</TableCell>
+                            <TableCell align="right">Payment</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -54,6 +56,10 @@ const Appointments = ({ date }) => {
                                         </IconButton>
                                     </Tooltip>
                                 </TableCell>
+                                <TableCell align="right">{row?.payment ?
+                                    "Paid" :
+                                    <Link to={`/dashboard/payment/${row?._id}`}><Button>Pay</Button></Link>
+                                }</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
