@@ -3,6 +3,7 @@ import MenuBar from '../../Shared/MenuBar/MenuBar';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
 import Care from '../Care/Care';
+import Doctors from '../Doctors/Doctors';
 import Info from '../Info/Info';
 import Services from '../Services/Services';
 
@@ -15,6 +16,7 @@ const Home = () => {
             <Services />
             <Care />
             <AppointmentBanner />
+            <Doctors />
         </div>
     );
 };
